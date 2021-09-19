@@ -1,0 +1,6 @@
+com/diogojxs/springbootmysql/models/Contact.class
+com/diogojxs/springbootmysql/SpringBootMysqlApplication.class
+com/diogojxs/springbootmysql/config/SwaggerConfig.class
+com/diogojxs/springbootmysql/repository/ContactRepository.class
+com/diogojxs/springbootmysql/controller/ContactController.class
+com/diogojxs/springbootmysql/service/ContactService.class

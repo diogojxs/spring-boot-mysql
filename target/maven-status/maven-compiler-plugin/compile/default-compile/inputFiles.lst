@@ -1,0 +1,6 @@
+/home/diogojxs/workspace/spring-boot-mysql/src/main/java/com/diogojxs/springbootmysql/config/SwaggerConfig.java
+/home/diogojxs/workspace/spring-boot-mysql/src/main/java/com/diogojxs/springbootmysql/SpringBootMysqlApplication.java
+/home/diogojxs/workspace/spring-boot-mysql/src/main/java/com/diogojxs/springbootmysql/service/ContactService.java
+/home/diogojxs/workspace/spring-boot-mysql/src/main/java/com/diogojxs/springbootmysql/repository/ContactRepository.java
+/home/diogojxs/workspace/spring-boot-mysql/src/main/java/com/diogojxs/springbootmysql/controller/ContactController.java
+/home/diogojxs/workspace/spring-boot-mysql/src/main/java/com/diogojxs/springbootmysql/models/Contact.java
