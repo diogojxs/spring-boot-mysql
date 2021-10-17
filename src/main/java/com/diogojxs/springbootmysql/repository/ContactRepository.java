@@ -1,6 +1,6 @@
 package com.diogojxs.springbootmysql.repository;
 
-import com.diogojxs.springbootmysql.models.Contact;
+import com.diogojxs.springbootmysql.model.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

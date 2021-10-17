@@ -1,4 +1,4 @@
-package com.diogojxs.springbootmysql.models;
+package com.diogojxs.springbootmysql.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,12 +1,11 @@
 package com.diogojxs.springbootmysql.service;
 
-import com.diogojxs.springbootmysql.models.Contact;
+import com.diogojxs.springbootmysql.model.Contact;
 import com.diogojxs.springbootmysql.repository.ContactRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContactService {
@@ -22,11 +21,9 @@ public class ContactService {
         return contactRepository.findAll();
     }
 
-    // Finds a contact by ID
-    public ResponseEntity<Contact> findById(@PathVariable long id){
-        return contactRepository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    //Finds a contact by ID
+    public Optional<Contact> findContactById(Long id) {
+        return contactRepository.findById(id);
     }
 
     // Creates a contact
@@ -35,24 +32,12 @@ public class ContactService {
     }
 
     // Updates a contact
-    public ResponseEntity<Contact> updateContact(@PathVariable("id") long id,
-                                                 @RequestBody Contact contact) {
-        return contactRepository.findById(id)
-                .map(record -> {
-                    record.setName(contact.getName());
-                    record.setEmail(contact.getEmail());
-                    record.setPhone(contact.getPhone());
-                    Contact updated = contactRepository.save(record);
-                    return ResponseEntity.ok().body(updated);
-                }).orElse(ResponseEntity.notFound().build());
+    public Contact updateContact(Contact contact) {
+        return contactRepository.save(contact);
     }
 
     // Deletes a contact
-    public ResponseEntity <?> deleteContact(@PathVariable long id) {
-        return contactRepository.findById(id)
-                .map(record -> {
-                    contactRepository.deleteById(id);
-                    return ResponseEntity.ok("Contact successfully deleted");
-                }).orElse(ResponseEntity.notFound().build());
+    public void deleteContact(Long id) {
+        contactRepository.deleteById(id);
     }
 }
