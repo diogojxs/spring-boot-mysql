@@ -32,8 +32,13 @@ public class ContactService {
     }
 
     // Updates a contact
-    public Contact updateContact(Contact contact) {
-        return contactRepository.save(contact);
+    public Contact updateContact(Contact contact, Long id) {
+        return findContactById(id).map(contactUpdated -> {
+            contactUpdated.setName(contact.getName());
+            contactUpdated.setEmail(contact.getEmail());
+            contactUpdated.setPhone(contact.getPhone());
+            return contactRepository.save(contactUpdated);
+        }).orElse(null);
     }
 
     // Deletes a contact

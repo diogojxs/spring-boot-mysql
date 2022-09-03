@@ -49,14 +49,8 @@ public class ContactController {
     @PutMapping("/contact/{id}")
     @ApiOperation(value = "Updates a contact")
     public ResponseEntity<Contact> update(@RequestBody Contact contact,
-                                           @PathVariable Long id) {
-        return contactService.findContactById(id)
-                .map(contactUpdated -> {
-                    contactUpdated.setName(contact.getName());
-                    contactUpdated.setEmail(contact.getEmail());
-                    contactUpdated.setPhone(contact.getPhone());
-                    return ResponseEntity.ok(contactService.updateContact(contactUpdated));
-                }).orElse(ResponseEntity.notFound().build());
+                                          @PathVariable("id") Long id) {
+        return ResponseEntity.ok(contactService.updateContact(contact, id));
     }
 
     @DeleteMapping("/contact/{id}")
