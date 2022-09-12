@@ -30,10 +30,10 @@ public class ContactController {
     }
 
     @ApiOperation(value = "Finds a contact by ID")
-    @GetMapping("contact/{id}")
-    public ResponseEntity<Optional<Contact>> findByID(@PathVariable("id") Long id) {
-        if (contactService.findContactById(id).isPresent()) {
-            return ResponseEntity.ok(contactService.findContactById(id));
+    @GetMapping("contact/{contactId}")
+    public ResponseEntity<Optional<Contact>> findByID(@PathVariable("contactId") Long contactId) {
+        if (contactService.findContactById(contactId).isPresent()) {
+            return ResponseEntity.ok(contactService.findContactById(contactId));
         } else {
             logger.error("ID not found");
             return ResponseEntity.notFound().build();
@@ -46,18 +46,18 @@ public class ContactController {
         return contactService.saveContact(contact);
     }
 
-    @PutMapping("/contact/{id}")
+    @PutMapping("/contact/{contactId}")
     @ApiOperation(value = "Updates a contact")
     public ResponseEntity<Contact> update(@RequestBody Contact contact,
-                                          @PathVariable("id") Long id) {
-        return ResponseEntity.ok(contactService.updateContact(contact, id));
+                                          @PathVariable("contactId") Long contactId) {
+        return ResponseEntity.ok(contactService.updateContact(contact, contactId));
     }
 
-    @DeleteMapping("/contact/{id}")
+    @DeleteMapping("/contact/{contactId}")
     @ApiOperation(value = "Deletes a contact")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable("contactId") Long contactId) {
         try {
-            contactService.deleteContact(id);
+            contactService.deleteContact(contactId);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             logger.error(e);
