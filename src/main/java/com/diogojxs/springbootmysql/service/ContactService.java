@@ -22,8 +22,8 @@ public class ContactService {
     }
 
     //Finds a contact by ID
-    public Optional<Contact> findContactById(Long contactId) {
-        return contactRepository.findById(contactId);
+    public Optional<Contact> findContactById(Long id) {
+        return contactRepository.findById(id);
     }
 
     // Creates a contact
@@ -32,8 +32,8 @@ public class ContactService {
     }
 
     // Updates a contact
-    public Contact updateContact(Contact contact, Long contactId) {
-        return findContactById(contactId).map(contactUpdated -> {
+    public Contact updateContact(Contact contact, Long id) {
+        return findContactById(id).map(contactUpdated -> {
             contactUpdated.setName(contact.getName());
             contactUpdated.setEmail(contact.getEmail());
             contactUpdated.setPhone(contact.getPhone());
@@ -42,7 +42,7 @@ public class ContactService {
     }
 
     // Deletes a contact
-    public void deleteContact(Long contactId) {
-        contactRepository.deleteById(contactId);
+    public void deleteContact(Long id) {
+        contactRepository.deleteById(id);
     }
 }
