@@ -25,4 +25,8 @@ public class Contact {
 
     @Column(name = "phone_contact")
     private String phone;
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id_address", referencedColumnName = "id_contact")
+//    private ContactAddress contactAddress;
 }
