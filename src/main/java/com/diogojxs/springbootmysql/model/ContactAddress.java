@@ -20,25 +20,21 @@ public class ContactAddress {
     @Column(name = "postal_area_code", nullable = false, length = 8)
     private String postalAreaCode;
 
-    @Column(name = "address_name", nullable = true, length = 160)
+    @Column(name = "address_name", length = 160)
     private String address;
 
-    @Column(name = "address_number", nullable = true, length = 20)
+    @Column(name = "address_number", length = 20)
     private String addressNumber;
 
-    @Column(name = "address_complement", nullable = true, length = 40)
+    @Column(name = "address_complement", length = 40)
     private String addressComplement;
 
-    @Column(name = "district_name", nullable = true, length = 80)
+    @Column(name = "district_name", length = 80)
     private String districtName;
 
-    @Column(name = "city", nullable = true, length = 80)
+    @Column(name = "city", length = 80)
     private String city;
 
-    @Column(name = "federation_unit", nullable = true, length = 80)
+    @Column(name = "federation_unit", length = 80)
     private String federationUnit;
-
-//    @OneToOne(mappedBy = "contact_address")
-//    private Contact contact;
-
 }
