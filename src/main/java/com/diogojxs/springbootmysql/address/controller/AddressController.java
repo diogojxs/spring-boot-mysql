@@ -1,7 +1,7 @@
 package com.diogojxs.springbootmysql.address.controller;
 
 import com.diogojxs.springbootmysql.address.facade.AddressFacade;
-import com.diogojxs.springbootmysql.address.vo.AddressResponseVO;
+import com.diogojxs.springbootmysql.vo.ContactAddressVO;
 import com.sun.istack.NotNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +18,8 @@ public class AddressController {
         this.addressFacade = addressFacade;
     }
 
-    @GetMapping(value = "/{cep}")
-    public AddressResponseVO getAddress(@PathVariable @NotNull String cep){
-        return addressFacade.getAddressData(cep);
+    @GetMapping(value = "/{postalAreaCode}")
+    public ContactAddressVO getAddress(@PathVariable @NotNull String postalAreaCode){
+        return addressFacade.getAddressData(postalAreaCode);
     }
 }

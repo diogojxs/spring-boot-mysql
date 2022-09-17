@@ -17,7 +17,7 @@ public class ContactAddress {
     @Column(name = "id_address", nullable = false)
     private Long id;
 
-    @Column(name = "postal_area_code", nullable = false, length = 8)
+    @Column(name = "postal_area_code", length = 9)
     private String postalAreaCode;
 
     @Column(name = "address_name", length = 160)

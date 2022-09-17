@@ -1,11 +1,14 @@
 package com.diogojxs.springbootmysql.address.service;
 
 import com.diogojxs.springbootmysql.address.vo.AddressResponseVO;
+import com.diogojxs.springbootmysql.vo.ContactAddressVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Objects;
 
 @Service
 public class AddressService {
@@ -20,10 +23,19 @@ public class AddressService {
         this.restTemplate = restTemplate;
     }
 
-    public AddressResponseVO getAddressDataFromViaCepAPI(String cep){
-        LOG.info("m=getAddressDataFromViaCepAPI, message:Trying to recover address by CEP from ViaCep API, cep={}", cep);
-            ResponseEntity<AddressResponseVO> response = restTemplate.getForEntity(URL1 + cep + URL2, AddressResponseVO.class);
+    public ContactAddressVO getAddressDataFromViaCepAPI(String postalAreaCode){
+        LOG.info("m=getAddressDataFromViaCepAPI, message:Trying to recover address by CEP from ViaCep API, cep={}", postalAreaCode);
+            ResponseEntity<AddressResponseVO> response = restTemplate.getForEntity(URL1 + postalAreaCode + URL2, AddressResponseVO.class);
             LOG.info("m=getAddressDataFromViaCepAPI, message:Successfully recovered CEP");
-            return response.getBody();
+            response.getBody();
+
+            ContactAddressVO contactAddress = new ContactAddressVO();
+            contactAddress.setPostalAreaCode(Objects.requireNonNull(response.getBody()).getCep());
+            contactAddress.setAddress(response.getBody().getLogradouro());
+            contactAddress.setDistrictName(response.getBody().getBairro());
+            contactAddress.setCity(response.getBody().getLocalidade());
+            contactAddress.setFederationUnit(response.getBody().getUf());
+
+            return contactAddress;
     }
 }

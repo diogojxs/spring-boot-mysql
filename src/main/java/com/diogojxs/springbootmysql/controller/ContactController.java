@@ -2,6 +2,7 @@ package com.diogojxs.springbootmysql.controller;
 
 import com.diogojxs.springbootmysql.service.ContactService;
 import com.diogojxs.springbootmysql.model.Contact;
+import com.diogojxs.springbootmysql.vo.ContactAddressVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
@@ -43,6 +44,13 @@ public class ContactController {
     @PostMapping("/contact")
     @ApiOperation(value = "Creates a contact")
     public Contact create(@RequestBody Contact contact) {
+
+        ContactAddressVO contactAddressVO = contactService.getAddressDataByPostalAreaCode(contact.getContactAddress().getPostalAreaCode());
+        contact.getContactAddress().setAddress(contactAddressVO.getAddress());
+        contact.getContactAddress().setDistrictName(contactAddressVO.getDistrictName());
+        contact.getContactAddress().setCity(contactAddressVO.getCity());
+        contact.getContactAddress().setFederationUnit(contactAddressVO.getFederationUnit());
+
         return contactService.saveContact(contact);
     }
 
